@@ -8,9 +8,11 @@ class Hand{
         ~Hand();
 
         void reverse();
+        bool playCard();
 
 
     private:
         std::deque<PointCard> cards_;
+        bool reversed_;
 
 };
