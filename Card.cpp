@@ -91,14 +91,14 @@ const int* Card::getImageData() const{
 * @param pointer to an array of integers
 */
 void Card::setImageData(int* data){
-
+  image_data_ = data;
 }
 
 /**
 * @return the drawn status of the card
 */
 bool Card::getDrawn() const{
-
+  return drawn_;  //Return the drawn status
 }
 
 /**
@@ -107,5 +107,5 @@ bool Card::getDrawn() const{
 * @param: const reference to a boolean
 */
 void Card::setDrawn(const bool& drawn){
-
+  drawn_ = drawn;  //set drawn_ to the drawn
 }
