@@ -1,6 +1,15 @@
+/**
+ * @file ActionCard.cpp
+ * @author Jeffrey Oyuela
+ * @email jeffrey.oyuela39@myhunter.cuny.edu
+ * @date 2023-11-08
+ */
+
 #include "ActionCard.hpp"
 
-ActionCard(){}
+ActionCard::ActionCard(){
+  setType(ACTION_CARD);
+}
 
 /**
  * @return true if the card is playable, false otherwise
@@ -12,7 +21,10 @@ ActionCard(){}
  * SWAP HAND WITH OPPONENT : swap the hand with the opponent
 */
 bool ActionCard::isPlayable(){
-  
+  if(!getDrawn()){
+    return false;
+  }
+  return isValid();
 }
 
 /**
@@ -25,13 +37,30 @@ bool ActionCard::isPlayable(){
  * Note: For [ImageData]: If there is no image data, print "No image data" instead
  */
 void ActionCard::Print() const{
-  std::cout << "Type: [" << getType() << "]\n";
-  std::cout << "Instruction: [" << getInstruction() << "]\n";
-  std::cout << "Card:\n" << getImageData() << std::endl;
+  std::cout << "Type: " << getType() << std::endl;
+  std::cout << "Instruction: " << getInstruction() << std::endl;
+  std::cout << "Card: " << std::endl;
+  
+  if(getImageData() == nullptr){
+    std::cout << "No image data" << std::endl;
+  }
+
+  else{
+    for(int i = 0; i < 80; i++){
+      std::cout << getImageData()[i] << " ";
+    }
+    std::cout << std::endl;
+  }
+  
 }
 
 bool ActionCard::isValid(){
-  if(getDrawn() == true){
-    
+  std::regex regexRule("^(DRAW|PLAY) [0-9]+ CARD\\(S\\)$");
+  //std::cout << regex_match(getInstruction(), regexRule) << std::endl;
+  if(regex_match(getInstruction(), regexRule) || getInstruction() == "REVERSE HAND" || getInstruction() == "SWAP HAND WITH OPPONENT"){
+    return true;
+  }
+  else{
+    return false;  
   }
 }

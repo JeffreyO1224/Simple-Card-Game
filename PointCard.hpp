@@ -34,5 +34,9 @@ class PointCard : public Card
          * Note: For [ImageData]: If there is no image data, print "No image data" instead
          */
         void Print() const override;
+
+        bool isValidInstruction();
+
+        //int getPoints();
 };
 #endif

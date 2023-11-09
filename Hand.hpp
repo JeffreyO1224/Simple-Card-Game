@@ -11,6 +11,7 @@ Hand.cpp Defines the Hand class.
 
 #include <deque>
 #include "PointCard.hpp"
+#include "Card.hpp"
 
 class Hand {
     public:
